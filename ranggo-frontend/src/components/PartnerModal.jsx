@@ -9,7 +9,7 @@ export default function PartnerModal({ isOpen, onClose }) {
 
   const onSubmit = async (data) => {
     try {
-      await api.post('/partner-register', data);
+      await api.post('/partner-register.php', data);
       toast.success('পার্টনার রিকোয়েস্ট সফলভাবে পাঠানো হয়েছে!');
       reset();
       onClose();

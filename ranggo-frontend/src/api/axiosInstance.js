@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://ranggo.clickio.com.bd/api', // আপানার ব্যাকএন্ড URL দিন
+  baseURL: 'https://ranggo.clickio.com.bd/backend/api', // আপানার ব্যাকএন্ড URL দিন
   headers: {
     'Content-Type': 'application/json',
   },

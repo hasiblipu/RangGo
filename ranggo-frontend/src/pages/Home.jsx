@@ -33,9 +33,17 @@ export default function Home() {
   });
 
   // সার্চ ও ক্যাটাগরি অনুযায়ী ফিল্টারিং
-  const filteredRestaurants = restaurants?.filter(res => {
-    const matchesCategory = selectedCategory === "All" || res.cuisine.includes(selectedCategory);
-    const matchesSearch = res.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const normalizedRestaurants = Array.isArray(restaurants)
+    ? restaurants
+    : Array.isArray(restaurants?.restaurants)
+      ? restaurants.restaurants
+      : [];
+
+  const filteredRestaurants = normalizedRestaurants.filter((res) => {
+    const cuisine = res?.cuisine ?? "";
+    const name = res?.name ?? "";
+    const matchesCategory = selectedCategory === "All" || cuisine.includes(selectedCategory);
+    const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
