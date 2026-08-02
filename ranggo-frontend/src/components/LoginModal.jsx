@@ -18,7 +18,11 @@ export default function LoginModal({ isOpen, onClose }) {
       
       // Auth Context-এ ডাটা ও টোকেন সেভ করা
       login(res.data.user, res.data.token);
-      toast.success(isSignUp ? 'একাউন্ট সফলভাবে তৈরি হয়েছে!' : 'লগইন সফল হয়েছে!');
+      if (res.data.status === 'success') {
+        toast.success(isSignUp ? 'একাউন্ট সফলভাবে তৈরি হয়েছে!' : 'লগইন সফল হয়েছে!');
+      }else{
+        toast.error(res.data.message || 'কোনো সমস্যা হয়েছে! আবার চেষ্টা করুন।');
+      }
       reset();
       onClose();
     } catch (error) {
